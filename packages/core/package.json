@@ -1,0 +1,8 @@
+{
+  "name": "@qstellar/core",
+  "version": "1.0.0",
+  "description": "Core constants, configurations, and utilities for QSTELLAR",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {}
+}

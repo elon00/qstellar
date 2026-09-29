@@ -1,0 +1,10 @@
+{
+  "name": "@qstellar/privacy-zk",
+  "version": "1.0.0",
+  "description": "Zero-Knowledge Selective Privacy & Compliance Verification Primitives for Stellar Soroban",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  }
+}

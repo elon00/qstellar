@@ -1,0 +1,13 @@
+{
+  "name": "@qstellar/raven-mcp",
+  "version": "1.0.0",
+  "description": "Stellar Raven Remote MCP Client & Intelligence Engine for AI Agents",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@qstellar/core": "^1.0.0"
+  }
+}

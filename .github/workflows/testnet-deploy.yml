@@ -1,0 +1,38 @@
+name: Stellar Testnet Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      network:
+        description: 'Target Network'
+        required: true
+        default: 'testnet'
+        type: choice
+        options:
+          - testnet
+
+jobs:
+  deploy:
+    name: Deploy Soroban Contracts to Testnet
+    runs-on: ubuntu-latest
+    environment: testnet
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32v1-none
+
+      - name: Verify Pre-deployment Tests
+        run: node scripts/run-all-tests.js
+
+      - name: Provision Testnet Account
+        run: node scripts/setup-testnet.js

@@ -1,0 +1,43 @@
+{
+  "name": "qstellar",
+  "version": "1.0.0",
+  "description": "Privacy-Aware, Post-Quantum-Ready AI Agentic Finance OS on Stellar with Raven MCP, x402 Bazaar Protocol, Soroban Contracts, Conway Automaton Engine & Multiwallet Connection",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/run-all-tests.js",
+    "test:pqc": "node packages/pqc-crypto/test.js",
+    "test:x402": "node packages/x402-bazaar/test.js",
+    "test:conway": "node packages/conway-automaton/test.js",
+    "test:raven": "node packages/raven-mcp/test.js",
+    "test:privacy": "node packages/privacy-zk/test.js",
+    "contracts:build": "cargo build --release --manifest-path contracts/Cargo.toml",
+    "contracts:test": "cargo test --manifest-path contracts/Cargo.toml",
+    "testnet:setup": "node scripts/setup-testnet.js",
+    "demo:agent": "node scripts/demo-x402-agent.js",
+    "bench:pqc": "node scripts/run-pqc-benchmarks.js",
+    "start:gateway": "node services/api-gateway/server.js",
+    "start:web": "node apps/web/server.js"
+  },
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "apps/*"
+  ],
+  "keywords": [
+    "stellar",
+    "soroban",
+    "x402",
+    "raven-mcp",
+    "ai-agentics",
+    "pqc",
+    "ml-dsa",
+    "cap-0087",
+    "conway-automaton",
+    "zk-privacy",
+    "web4",
+    "hackathon-2026"
+  ],
+  "author": "elon00",
+  "license": "MIT"
+}

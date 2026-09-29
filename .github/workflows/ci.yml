@@ -1,0 +1,35 @@
+name: QSTELLAR CI & Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Test & Verify Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32v1-none, wasm32-unknown-unknown
+
+      - name: Run Unified Test Suite
+        run: node scripts/run-all-tests.js
+
+      - name: Run PQC Cryptographic Benchmarks
+        run: node scripts/run-pqc-benchmarks.js
+
+      - name: Run End-to-End Judge Demo
+        run: node scripts/demo-x402-agent.js

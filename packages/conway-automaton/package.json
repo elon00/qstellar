@@ -1,0 +1,10 @@
+{
+  "name": "@qstellar/conway-automaton",
+  "version": "1.0.0",
+  "description": "Cellular Automaton Engine for Autonomous Agent Financial Lifecycle & Network State Simulation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  }
+}

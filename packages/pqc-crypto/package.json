@@ -1,0 +1,10 @@
+{
+  "name": "@qstellar/pqc-crypto",
+  "version": "1.0.0",
+  "description": "NIST FIPS 204 ML-DSA-65 Post-Quantum Cryptography & CAP-0087 Hybrid Authorization for Stellar",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  }
+}

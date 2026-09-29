@@ -1,0 +1,13 @@
+{
+  "name": "@qstellar/x402-bazaar",
+  "version": "1.0.0",
+  "description": "HTTP 402 Payment Required Bazaar Protocol for AI Agents on Stellar with Soroban Settlement",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@qstellar/core": "^1.0.0"
+  }
+}

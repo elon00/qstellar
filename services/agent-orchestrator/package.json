@@ -1,0 +1,16 @@
+{
+  "name": "@qstellar/agent-orchestrator",
+  "version": "1.0.0",
+  "description": "Multi-Model AI Agent Orchestrator with Raven MCP & x402 Bazaar Execution",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@qstellar/core": "^1.0.0",
+    "@qstellar/raven-mcp": "^1.0.0",
+    "@qstellar/x402-bazaar": "^1.0.0",
+    "@qstellar/pqc-crypto": "^1.0.0"
+  }
+}
