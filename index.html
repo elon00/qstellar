@@ -130,6 +130,37 @@
         <pre id="x402Output">// Select an endpoint and click 'Request API' to trigger HTTP 402 challenge</pre>
       </div>
 
+      <!-- Panel 3B: Agent Spending Policy & Budget Guard -->
+      <div class="card col-6">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛡️</span> Agent Spending Policy & Budget Guard
+          </div>
+          <span class="badge" style="color: var(--accent-emerald); border-color: rgba(16,185,129,0.3);">Soroban Allowance Enforced</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Autonomous agent spend protection: Enforces hard on-chain daily budgets and per-call caps. Over-budget attempts are fail-closed and blocked before wallet submission.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="font-size: 0.7rem; color: var(--text-muted);">Daily Spend Budget:</label>
+            <input type="text" id="policyBudgetInput" value="5.00 QST">
+          </div>
+          <div>
+            <label style="font-size: 0.7rem; color: var(--text-muted);">Per-Call Limit:</label>
+            <input type="text" id="policyPerCallInput" value="0.10 QST">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; background: rgba(0,0,0,0.3); padding: 0.6rem; border-radius: 6px; font-size: 0.75rem;">
+          <div>Budget: <strong id="guardBudget">5.00 QST</strong></div>
+          <div>Spent Today: <strong id="guardSpent" style="color:var(--accent-amber);">0.00 QST</strong></div>
+          <div>Remaining: <strong id="guardRemaining" style="color:var(--accent-emerald);">5.00 QST</strong></div>
+          <div>Blocked: <strong id="guardBlocked" style="color:var(--accent-red);">0</strong></div>
+        </div>
+      </div>
+
       <!-- Panel 4: Post-Quantum Cryptography (NIST FIPS 204 & CAP-0087) -->
       <div class="card col-6">
         <div class="card-header">

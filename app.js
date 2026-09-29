@@ -246,12 +246,32 @@ testX402Btn.addEventListener('click', async () => {
 });
 
 payX402Btn.addEventListener('click', async () => {
+  const cost = parseFloat(state.x402.currentChallenge.pricing.amount);
+  const perCallCap = parseFloat(document.getElementById('policyPerCallInput').value) || 0.10;
+  const currentBudget = parseFloat(document.getElementById('policyBudgetInput').value) || 5.00;
+  
+  // Enforce Policy Guard
+  if (cost > perCallCap) {
+    const blockedCount = parseInt(document.getElementById('guardBlocked').textContent) + 1;
+    document.getElementById('guardBlocked').textContent = blockedCount;
+    x402Output.textContent += `\n\n❌ [POLICY GUARD VIOLATION] Payment of ${cost} QST rejected! Exceeds per-call limit of ${perCallCap} QST.`;
+    return;
+  }
+
   payX402Btn.disabled = true;
-  x402Output.textContent += `\n\n> Authorizing payment via Stellar Wallets Kit...\n> Submitting Soroban authorization entry to Testnet...`;
+  x402Output.textContent += `\n\n> Checking Agent Policy Guard... ALLOWED ✅\n> Authorizing payment via Stellar Wallets Kit v2...\n> Submitting Soroban authorization entry to Testnet...`;
 
   setTimeout(() => {
     const txHash = 'tx_' + Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-    x402Output.textContent += `\n\nHTTP/1.1 200 OK\nx402-payment-receipt: {\n  "status": "SETTLED_ON_STELLAR_TESTNET",\n  "txHash": "${txHash}",\n  "amount": "${state.x402.currentChallenge.pricing.amount} QST"\n}\n\n{\n  "status": "UNLOCKED",\n  "message": "Access granted to premium intelligence resource via x402 Bazaar Protocol."\n}`;
+    
+    // Update Guard Telemetry
+    const prevSpent = parseFloat(document.getElementById('guardSpent').textContent) || 0;
+    const newSpent = prevSpent + cost;
+    const newRemaining = Math.max(0, currentBudget - newSpent);
+    document.getElementById('guardSpent').textContent = `${newSpent.toFixed(2)} QST`;
+    document.getElementById('guardRemaining').textContent = `${newRemaining.toFixed(2)} QST`;
+
+    x402Output.textContent += `\n\nHTTP/1.1 200 OK\nx402-payment-receipt: {\n  "status": "SETTLED_ON_STELLAR_TESTNET",\n  "txHash": "${txHash}",\n  "amount": "${state.x402.currentChallenge.pricing.amount} QST",\n  "remainingPolicyBudget": "${newRemaining.toFixed(2)} QST"\n}\n\n{\n  "status": "UNLOCKED",\n  "message": "Access granted to premium intelligence resource via x402 Bazaar Protocol."\n}`;
     state.conway.liquidity += 5.0;
     state.conway.txs++;
     drawConway();
