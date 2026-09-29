@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QSTELLAR — Privacy-Aware Post-Quantum AI Agentic Finance OS on Stellar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo-group">
+        <div class="logo-badge">QSTELLAR</div>
+        <div class="title-wrap">
+          <h1>Agentic Finance OS</h1>
+          <p>Privacy-Aware • Post-Quantum (CAP-0087) • Raven MCP • x402 Bazaar • Soroban</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge pulse" id="networkBadge">Stellar Testnet</span>
+        <button class="btn btn-emerald" id="faucetBtn" title="Request 10,000 Testnet XLM via Friendbot">💧 Friendbot Faucet</button>
+        <select id="walletSelect" style="width: 140px;">
+          <option value="freighter">Freighter</option>
+          <option value="xbull">xBull</option>
+          <option value="lobstr">Lobstr</option>
+          <option value="albedo">Albedo</option>
+          <option value="walletconnect">WalletConnect</option>
+          <option value="testnet_dev" selected>Dev Account</option>
+        </select>
+        <button class="btn btn-primary" id="connectWalletBtn">⚡ Connect Wallet</button>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="dashboard-grid">
+      
+      <!-- Panel 1: Multi-Model AI Agent & Raven MCP Orchestrator -->
+      <div class="card col-8">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🤖</span> Multi-Model AI Agent Orchestrator
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Model:</span>
+            <select id="modelSelect" style="width: 180px; padding: 0.2rem 0.5rem;">
+              <option value="claude-3-5-sonnet-20241022">Claude 3.5 Sonnet</option>
+              <option value="gpt-4o">GPT-4o</option>
+              <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+              <option value="deepseek-chat">DeepSeek V3</option>
+              <option value="qstellar-local-agent">Qstellar Autonomous</option>
+            </select>
+            <span class="badge" title="Connected to SDF's Remote MCP Server">🦅 Raven MCP Active</span>
+          </div>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+          <div class="chat-bubble agent">
+            <strong>QSTELLAR Autonomous Agent:</strong><br>
+            Welcome to the Stellar Agentic Finance Platform. I can discover tools via <strong>Stellar Raven MCP</strong>, purchase paid APIs using the <strong>x402 Bazaar Protocol</strong>, and settle on <strong>Soroban Testnet</strong> with <strong>ML-DSA-65 post-quantum verification</strong>.
+            <div class="step-box">
+              🛡️ <strong>Safety Rule:</strong> My private keys are separated. I can simulate and discover, but all transactions must be authorized through your connected Stellar wallet.
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="agentInput" placeholder="e.g. Find an intelligence service and analyze portfolio risk under 0.10 QST...">
+          <button class="btn btn-primary" id="sendAgentBtn">Send Prompt</button>
+        </div>
+      </div>
+
+      <!-- Panel 2: Conway Automaton Economic Visualizer -->
+      <div class="card col-4">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🧬</span> Conway Automaton Network
+          </div>
+          <span class="badge" id="automatonGenBadge">Gen: 0</span>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="conwayCanvas" width="240" height="240"></canvas>
+          <div class="canvas-controls">
+            <button class="btn" id="conwayPlayBtn" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">▶ Resume</button>
+            <button class="btn" id="conwayStepBtn" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">⏭ Step</button>
+            <button class="btn btn-amber" id="conwayPulseBtn" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">⚡ Payment Pulse</button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><span class="dot" style="background:#1a1f2c;"></span>Dead</span>
+          <span><span class="dot" style="background:#3b82f6;"></span>Idle</span>
+          <span><span class="dot" style="background:#10b981;"></span>Active</span>
+          <span><span class="dot" style="background:#f59e0b;"></span>Paying(402)</span>
+          <span><span class="dot" style="background:#8b5cf6;"></span>PQC Verifying</span>
+          <span><span class="dot" style="background:#ef4444;"></span>Failed</span>
+        </div>
+
+        <div style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted); display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+          <div>Active Agents: <strong id="telemetryActive" style="color:var(--text-main);">0</strong></div>
+          <div>Network Liquidity: <strong id="telemetryLiquidity" style="color:var(--accent-cyan);">0 QST</strong></div>
+          <div>Settled Txs: <strong id="telemetryTxs" style="color:var(--accent-emerald);">0</strong></div>
+          <div>Health Ratio: <strong id="telemetryHealth" style="color:var(--accent-violet);">100%</strong></div>
+        </div>
+      </div>
+
+      <!-- Panel 3: x402 Bazaar Protocol Explorer -->
+      <div class="card col-6">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛒</span> x402 Bazaar Protocol Gateway
+          </div>
+          <span class="badge" style="color: var(--accent-amber); border-color: rgba(245,158,11,0.3);">HTTP 402 Micropayments</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Test real machine-to-machine micropayments. Protected endpoints return HTTP 402 with price in stroops; client wallet authorizes payment with Soroban entries to unlock resources.
+        </p>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <select id="x402EndpointSelect">
+            <option value="/api/ai/research">GET /api/ai/research (0.05 QST)</option>
+            <option value="/api/market/intelligence">GET /api/market/intelligence (0.10 QST)</option>
+          </select>
+          <button class="btn btn-primary" id="testX402Btn">1. Request API</button>
+          <button class="btn btn-amber" id="payX402Btn" disabled>2. Settle & Unlock</button>
+        </div>
+
+        <pre id="x402Output">// Select an endpoint and click 'Request API' to trigger HTTP 402 challenge</pre>
+      </div>
+
+      <!-- Panel 4: Post-Quantum Cryptography (NIST FIPS 204 & CAP-0087) -->
+      <div class="card col-6">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🔒</span> Post-Quantum Cryptography (CAP-0087)
+          </div>
+          <span class="badge" style="color: var(--accent-violet); border-color: rgba(139,92,246,0.3);">ML-DSA-65 (NIST FIPS 204)</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Compliant with CAP-0087: Verifies 1952-byte ML-DSA-65 public keys and 3309-byte signatures over domain-separated context for quantum-resilient transaction authorization.
+        </p>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <button class="btn" id="genPqcKeyBtn">Generate 1952B Keypair</button>
+          <button class="btn btn-primary" id="signPqcBtn">Sign 3309B Signature</button>
+          <button class="btn btn-emerald" id="verifyPqcBtn">Verify CAP-0087</button>
+        </div>
+
+        <pre id="pqcOutput">// Click 'Generate 1952B Keypair' to initialize ML-DSA-65 lattice keys</pre>
+      </div>
+
+      <!-- Panel 5: Selective Privacy & Zero-Knowledge (Groth16 BN254) -->
+      <div class="card col-6">
+        <div class="card-header">
+          <div class="card-title">
+            <span>👁️</span> Zero-Knowledge Selective Privacy
+          </div>
+          <span class="badge">Groth16 • Poseidon2</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Compliance-aware privacy: Prove KYC status or balance solvency to Soroban smart contracts without leaking personal documents or wallet balances.
+        </p>
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <button class="btn btn-primary" id="genZkProofBtn">Generate ZK-KYC Proof</button>
+          <button class="btn btn-emerald" id="verifyZkProofBtn">Verify on Soroban</button>
+        </div>
+
+        <pre id="zkOutput">// Click 'Generate ZK-KYC Proof' to build Groth16 attestation</pre>
+      </div>
+
+      <!-- Panel 6: SEP-41 Soroban Token & Escrow Portal -->
+      <div class="card col-6">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🪙</span> QSTELLAR Token & Escrow (SEP-41)
+          </div>
+          <span class="badge" id="tokenBalanceBadge">Balance: 1,000.00 QST</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <input type="text" id="mintAmount" placeholder="Amount (e.g. 500 QST)">
+          <button class="btn btn-emerald" id="mintTokenBtn">Policy Mint QST</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem;">
+          <input type="text" id="escrowRecipient" placeholder="Agent Address (G...)">
+          <button class="btn btn-primary" id="createEscrowBtn">Create Escrow</button>
+        </div>
+
+        <pre id="tokenContractOutput" style="margin-top: 0.75rem;">Contract: CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+Symbol: QST | Decimals: 7 | Total Supply: 10,000,000 QST</pre>
+      </div>
+
+      <!-- Panel 7: QR Code Payment Terminal -->
+      <div class="card col-12">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📱</span> SEP-Compliant QR Payment Station
+          </div>
+          <span class="badge">web+stellar:pay URI</span>
+        </div>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+          <div style="background: #fff; padding: 0.5rem; border-radius: 8px; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center;" id="qrContainer">
+            <!-- Simulated QR SVG -->
+            <svg viewBox="0 0 100 100" width="120" height="120">
+              <rect width="100" height="100" fill="#fff"/>
+              <rect x="10" y="10" width="25" height="25" fill="#000"/>
+              <rect x="65" y="10" width="25" height="25" fill="#000"/>
+              <rect x="10" y="65" width="25" height="25" fill="#000"/>
+              <rect x="15" y="15" width="15" height="15" fill="#fff"/>
+              <rect x="70" y="15" width="15" height="15" fill="#fff"/>
+              <rect x="15" y="70" width="15" height="15" fill="#fff"/>
+              <rect x="18" y="18" width="9" height="9" fill="#000"/>
+              <rect x="73" y="18" width="9" height="9" fill="#000"/>
+              <rect x="18" y="73" width="9" height="9" fill="#000"/>
+              <rect x="42" y="10" width="16" height="8" fill="#000"/>
+              <rect x="42" y="24" width="8" height="16" fill="#000"/>
+              <rect x="42" y="44" width="16" height="16" fill="#000"/>
+              <rect x="65" y="44" width="10" height="10" fill="#000"/>
+              <rect x="80" y="65" width="10" height="25" fill="#000"/>
+              <rect x="44" y="65" width="20" height="8" fill="#000"/>
+            </svg>
+          </div>
+          <div style="flex: 1;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+              Generated Stellar SEP Payment URI (Point your mobile Stellar wallet to pay):
+            </p>
+            <pre id="qrUriText">web+stellar:pay?destination=GDDESTINATIONTESTNETQSTELLAR777777777777777777777777777777&amount=0.05&asset_code=QST&network=testnet</pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
