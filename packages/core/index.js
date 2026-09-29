@@ -4,6 +4,13 @@
  */
 
 export const STELLAR_NETWORKS = {
+  LOCAL: {
+    networkPassphrase: 'Standalone Network ; February 2017',
+    horizonUrl: 'http://127.0.0.1:8000',
+    sorobanRpcUrl: 'http://127.0.0.1:8000/rpc',
+    friendbotUrl: 'http://127.0.0.1:8000/friendbot',
+    labUrl: 'http://127.0.0.1:8000/lab',
+  },
   TESTNET: {
     networkPassphrase: 'Test SDF Network ; September 2015',
     horizonUrl: 'https://horizon-testnet.stellar.org',
