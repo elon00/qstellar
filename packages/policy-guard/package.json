@@ -1,0 +1,13 @@
+{
+  "name": "@qstellar/policy-guard",
+  "version": "1.0.0",
+  "description": "On-Chain & Client-Side Policy Guard Enforcing Agent Spending Caps and Daily Budgets",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@qstellar/core": "^1.0.0"
+  }
+}

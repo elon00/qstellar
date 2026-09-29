@@ -16,6 +16,9 @@ pub enum PaymentError {
     NegativeAmount = 6,
     Expired = 7,
     NotExpired = 8,
+    PerCallLimitExceeded = 9,
+    DailyBudgetExceeded = 10,
+    PolicyNotFound = 11,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
@@ -42,10 +45,27 @@ pub struct Escrow {
 
 #[derive(Clone)]
 #[contracttype]
+pub struct AgentPolicy {
+    pub daily_budget: i128,
+    pub per_call_cap: i128,
+    pub spent_today: i128,
+    pub last_reset_ledger: u32,
+}
+
+#[derive(Clone)]
+#[contracttype]
+pub struct PolicyKey {
+    pub payer: Address,
+    pub agent: Address,
+}
+
+#[derive(Clone)]
+#[contracttype]
 pub enum DataKey {
     Admin,
     EscrowCounter,
     Escrow(u64),
+    Policy(PolicyKey),
 }
 
 const INSTANCE_BUMP_AMOUNT: u32 = 518400;
@@ -275,6 +295,109 @@ impl AgentPaymentContract {
     /// Get escrow details
     pub fn get_escrow(env: Env, escrow_id: u64) -> Option<Escrow> {
         env.storage().persistent().get(&DataKey::Escrow(escrow_id))
+    }
+
+    /// Set an agent spending policy and daily budget
+    pub fn set_agent_policy(
+        env: Env,
+        payer: Address,
+        agent: Address,
+        daily_budget: i128,
+        per_call_cap: i128,
+    ) -> Result<(), PaymentError> {
+        payer.require_auth();
+
+        if daily_budget <= 0 || per_call_cap <= 0 {
+            return Err(PaymentError::NegativeAmount);
+        }
+
+        let key = DataKey::Policy(PolicyKey {
+            payer: payer.clone(),
+            agent: agent.clone(),
+        });
+
+        let policy = AgentPolicy {
+            daily_budget,
+            per_call_cap,
+            spent_today: 0,
+            last_reset_ledger: env.ledger().sequence(),
+        };
+
+        env.storage().persistent().set(&key, &policy);
+
+        env.events().publish(
+            (symbol_short!("pol_set"), payer, agent),
+            (daily_budget, per_call_cap),
+        );
+
+        Ok(())
+    }
+
+    /// Enforce spending under approved agent policy
+    pub fn spend_under_policy(
+        env: Env,
+        payer: Address,
+        agent: Address,
+        token_address: Address,
+        recipient: Address,
+        amount: i128,
+        resource_id: Symbol,
+    ) -> Result<i128, PaymentError> {
+        payer.require_auth();
+
+        if amount <= 0 {
+            return Err(PaymentError::NegativeAmount);
+        }
+
+        let key = DataKey::Policy(PolicyKey {
+            payer: payer.clone(),
+            agent: agent.clone(),
+        });
+
+        let mut policy: AgentPolicy = env
+            .storage()
+            .persistent()
+            .get(&key)
+            .ok_or(PaymentError::PolicyNotFound)?;
+
+        // Reset daily spend if 17,280 ledgers (~24h at 5s/ledger) have elapsed
+        let current_ledger = env.ledger().sequence();
+        if current_ledger >= policy.last_reset_ledger + 17280 {
+            policy.spent_today = 0;
+            policy.last_reset_ledger = current_ledger;
+        }
+
+        // Rule 1: Check Per-Call Limit
+        if amount > policy.per_call_cap {
+            return Err(PaymentError::PerCallLimitExceeded);
+        }
+
+        // Rule 2: Check Daily Budget
+        if policy.spent_today + amount > policy.daily_budget {
+            return Err(PaymentError::DailyBudgetExceeded);
+        }
+
+        // Execute payment transfer from payer to service recipient
+        let token_client = token::Client::new(&env, &token_address);
+        token_client.transfer(&payer, &recipient, &amount);
+
+        policy.spent_today += amount;
+        env.storage().persistent().set(&key, &policy);
+
+        let remaining = policy.daily_budget - policy.spent_today;
+
+        env.events().publish(
+            (symbol_short!("pol_spend"), payer, agent),
+            (resource_id, amount, remaining),
+        );
+
+        Ok(remaining)
+    }
+
+    /// Query agent spending policy details
+    pub fn get_agent_policy(env: Env, payer: Address, agent: Address) -> Option<AgentPolicy> {
+        let key = DataKey::Policy(PolicyKey { payer, agent });
+        env.storage().persistent().get(&key)
     }
 }
 

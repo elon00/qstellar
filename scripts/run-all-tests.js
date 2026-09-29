@@ -23,6 +23,8 @@ const testSuites = [
   { name: 'Stellar Raven Remote MCP Client', script: 'packages/raven-mcp/test.js' },
   { name: 'Conway Cellular Automaton Agent Engine', script: 'packages/conway-automaton/test.js' },
   { name: 'Zero-Knowledge Selective Privacy (Groth16/BN254)', script: 'packages/privacy-zk/test.js' },
+  { name: 'Stellar Wallets Kit v2 Multi-Wallet Manager', script: 'packages/stellar-wallet/test.js' },
+  { name: 'Agent Policy Guard & Spend Controller', script: 'packages/policy-guard/test.js' },
   { name: 'Multi-Model AI Agent Orchestrator', script: 'services/agent-orchestrator/test.js' },
 ];
 

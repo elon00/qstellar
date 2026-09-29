@@ -1,0 +1,13 @@
+{
+  "name": "@qstellar/stellar-wallet",
+  "version": "1.0.0",
+  "description": "Stellar Wallets Kit v2 wrapper with Freighter, xBull, Lobstr, Albedo, WalletConnect and safe transaction simulation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "@qstellar/core": "^1.0.0"
+  }
+}
