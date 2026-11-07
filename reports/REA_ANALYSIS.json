@@ -1,0 +1,251 @@
+{
+  "engine": "REA_Reverse_Engineer_Anything",
+  "status": "STRUCTURE_RECONSTRUCTED",
+  "analyzed_files": 81,
+  "manifest": {
+    "docker-compose.quickstart.yml": {
+      "bytes": 429
+    },
+    "LICENSE": {
+      "bytes": 1103
+    },
+    "mcp.json": {
+      "bytes": 244
+    },
+    "package.json": {
+      "bytes": 1415
+    },
+    "README.md": {
+      "bytes": 10063
+    },
+    "contracts\\Cargo.toml": {
+      "bytes": 380
+    },
+    "docs\\ARCHITECTURE.md": {
+      "bytes": 6930
+    },
+    "docs\\DEFINITION-OF-DONE.md": {
+      "bytes": 3960
+    },
+    "docs\\DEMO-SCRIPT.md": {
+      "bytes": 3541
+    },
+    "docs\\GLOBAL-HACKATHON-BLUEPRINT.md": {
+      "bytes": 4784
+    },
+    "docs\\HACKATHON-CHECKLIST.md": {
+      "bytes": 5736
+    },
+    "docs\\SECURITY-THREAT-MODEL.md": {
+      "bytes": 3688
+    },
+    "docs\\STANDARDS-MAPPING.md": {
+      "bytes": 3590
+    },
+    "docs\\TESTNET-DEPLOYMENT.md": {
+      "bytes": 3699
+    },
+    "docs\\WHAT-TO-DO-AND-NOT-TO-DO.md": {
+      "bytes": 3088
+    },
+    "scripts\\bridge-raven.bat": {
+      "bytes": 327
+    },
+    "scripts\\bridge-raven.js": {
+      "bytes": 1807
+    },
+    "scripts\\demo-x402-agent.js": {
+      "bytes": 1994
+    },
+    "scripts\\quickstart-smoke.js": {
+      "bytes": 1213
+    },
+    "scripts\\rea_inspector.py": {
+      "bytes": 1485
+    },
+    "scripts\\rsi_engine.py": {
+      "bytes": 2039
+    },
+    "scripts\\run-all-tests.js": {
+      "bytes": 2869
+    },
+    "scripts\\run-pqc-benchmarks.js": {
+      "bytes": 3782
+    },
+    "scripts\\setup-testnet.js": {
+      "bytes": 2495
+    },
+    "tests\\reality_check_harness.py": {
+      "bytes": 1250
+    },
+    ".github\\workflows\\ci.yml": {
+      "bytes": 834
+    },
+    ".github\\workflows\\qmoosa-rsi-rea-sync.yml": {
+      "bytes": 531
+    },
+    ".github\\workflows\\quickstart-e2e.yml": {
+      "bytes": 1408
+    },
+    ".github\\workflows\\testnet-deploy.yml": {
+      "bytes": 861
+    },
+    "apps\\web\\app.js": {
+      "bytes": 13778
+    },
+    "apps\\web\\index.html": {
+      "bytes": 14669
+    },
+    "apps\\web\\package.json": {
+      "bytes": 497
+    },
+    "apps\\web\\server.js": {
+      "bytes": 1462
+    },
+    "apps\\web\\style.css": {
+      "bytes": 7004
+    },
+    "contracts\\agent-payment\\Cargo.toml": {
+      "bytes": 466
+    },
+    "contracts\\pqc-verifier\\Cargo.toml": {
+      "bytes": 465
+    },
+    "contracts\\qstellar-token\\Cargo.toml": {
+      "bytes": 467
+    },
+    "contracts\\service-registry\\Cargo.toml": {
+      "bytes": 469
+    },
+    "contracts\\agent-payment\\src\\lib.rs": {
+      "bytes": 11506
+    },
+    "contracts\\agent-payment\\src\\test.rs": {
+      "bytes": 3541
+    },
+    "contracts\\agent-payment\\test_snapshots\\test\\test_agent_escrow_lifecycle.1.json": {
+      "bytes": 27099
+    },
+    "contracts\\agent-payment\\test_snapshots\\test\\test_agent_policy_budget_and_overspend_protection.1.json": {
+      "bytes": 23776
+    },
+    "contracts\\pqc-verifier\\src\\lib.rs": {
+      "bytes": 5025
+    },
+    "contracts\\pqc-verifier\\src\\test.rs": {
+      "bytes": 1910
+    },
+    "contracts\\pqc-verifier\\test_snapshots\\test\\test_pqc_identity_and_verification.1.json": {
+      "bytes": 26990
+    },
+    "contracts\\pqc-verifier\\test_snapshots\\test\\test_pqc_invalid_lengths_rejection.1.json": {
+      "bytes": 2888
+    },
+    "contracts\\qstellar-token\\src\\lib.rs": {
+      "bytes": 8866
+    },
+    "contracts\\qstellar-token\\src\\test.rs": {
+      "bytes": 2391
+    },
+    "contracts\\qstellar-token\\test_snapshots\\test\\test_token_allowance_and_transfer_from.1.json": {
+      "bytes": 15387
+    },
+    "contracts\\qstellar-token\\test_snapshots\\test\\test_token_initialization_and_minting.1.json": {
+      "bytes": 12020
+    },
+    "contracts\\service-registry\\src\\lib.rs": {
+      "bytes": 4865
+    },
+    "contracts\\service-registry\\src\\test.rs": {
+      "bytes": 1320
+    },
+    "contracts\\service-registry\\test_snapshots\\test\\test_service_registration_and_lookup.1.json": {
+      "bytes": 9850
+    },
+    "packages\\conway-automaton\\index.js": {
+      "bytes": 6964
+    },
+    "packages\\conway-automaton\\package.json": {
+      "bytes": 278
+    },
+    "packages\\conway-automaton\\test.js": {
+      "bytes": 1165
+    },
+    "packages\\core\\index.js": {
+      "bytes": 3332
+    },
+    "packages\\core\\package.json": {
+      "bytes": 204
+    },
+    "packages\\policy-guard\\index.js": {
+      "bytes": 3683
+    },
+    "packages\\policy-guard\\package.json": {
+      "bytes": 323
+    },
+    "packages\\policy-guard\\test.js": {
+      "bytes": 2021
+    },
+    "packages\\pqc-crypto\\index.js": {
+      "bytes": 7448
+    },
+    "packages\\pqc-crypto\\package.json": {
+      "bytes": 272
+    },
+    "packages\\pqc-crypto\\test.js": {
+      "bytes": 2137
+    },
+    "packages\\privacy-zk\\index.js": {
+      "bytes": 3973
+    },
+    "packages\\privacy-zk\\package.json": {
+      "bytes": 268
+    },
+    "packages\\privacy-zk\\test.js": {
+      "bytes": 1261
+    },
+    "packages\\raven-mcp\\index.js": {
+      "bytes": 7186
+    },
+    "packages\\raven-mcp\\package.json": {
+      "bytes": 304
+    },
+    "packages\\raven-mcp\\test.js": {
+      "bytes": 913
+    },
+    "packages\\stellar-wallet\\index.js": {
+      "bytes": 3742
+    },
+    "packages\\stellar-wallet\\package.json": {
+      "bytes": 357
+    },
+    "packages\\stellar-wallet\\test.js": {
+      "bytes": 1636
+    },
+    "packages\\x402-bazaar\\index.js": {
+      "bytes": 6644
+    },
+    "packages\\x402-bazaar\\package.json": {
+      "bytes": 329
+    },
+    "packages\\x402-bazaar\\test.js": {
+      "bytes": 1772
+    },
+    "services\\agent-orchestrator\\index.js": {
+      "bytes": 6117
+    },
+    "services\\agent-orchestrator\\package.json": {
+      "bytes": 435
+    },
+    "services\\agent-orchestrator\\test.js": {
+      "bytes": 1039
+    },
+    "services\\api-gateway\\package.json": {
+      "bytes": 507
+    },
+    "services\\api-gateway\\server.js": {
+      "bytes": 10524
+    }
+  },
+  "timestamp": 1794027654
+}
