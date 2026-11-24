@@ -38,3 +38,6 @@ Thumbs.db
 # Test Coverage
 coverage/
 .nyc_output/
+
+# Lean 4 build artifacts
+lean_verify/.lake/
